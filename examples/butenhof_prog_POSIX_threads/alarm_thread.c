@@ -17,7 +17,7 @@ void *alarm_thread (void *arg)
     alarm_t *alarm = (alarm_t*)arg;
     int status;
 
-    status = pthread_detach (pthread_self ());
+    status = pthread_detach(pthread_self());
     if (status != 0)
         err_abort (status, "Detach thread");
     sleep (alarm->seconds);

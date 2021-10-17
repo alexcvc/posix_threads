@@ -15,17 +15,18 @@ static int counter;
 
 /*
  * Loop until cancelled. The thread can be cancelled only
- * when it calls pthread_testcancel, which it does each 1000
+ * when it calls pthread_testcancel, which it does each 100000
  * iterations.
  */
 void *thread_routine (void *arg)
 {
     DPRINTF (("thread_routine starting\n"));
     for (counter = 0; ; counter++)
-        if ((counter % 1000) == 0) {
-            DPRINTF (("calling testcancel\n"));
+        if ((counter % 10) == 0) {
+            DPRINTF (("calling testcancel %d\n", counter));
             pthread_testcancel ();
         }
+        sleep(1);
 }
 
 int main (int argc, char *argv[])
